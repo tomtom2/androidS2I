@@ -94,7 +94,7 @@ public class CustomAdapter_favoris extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
-				host.goToMap(poi);
+				host.runDetail(poi);
 			}
         	
         });

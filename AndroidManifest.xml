@@ -27,6 +27,7 @@
         <activity android:name="FinderMapActivity"></activity>
         <activity android:name="FavoritesActivity"></activity>
         <uses-library android:name="com.google.android.maps"/>
+        <activity android:name="FavoritesDetail"></activity>
     </application>
 
 </manifest>

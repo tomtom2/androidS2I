@@ -75,14 +75,12 @@ public class DetailFragment extends Fragment implements OnClickListener {
 		// TODO Auto-generated method stub
 		if (v == favoris) {
 			((FinderListActivity) getActivity()).goToFavoris(poi.getId());
-			// getActivity().getFragmentManager().beginTransaction().remove(this).commit();
 		} else if (v == yaller) {
 			Intent browserIntent = new Intent(Intent.ACTION_VIEW,
 					Uri.parse(this.getUrl()));
 			startActivity(browserIntent);
 		} else if (v == carte) {
 			((FinderListActivity) getActivity()).goToMap(poi.getId());
-			// getActivity().getFragmentManager().beginTransaction().remove(this).commit();
 		} else if (v == back) {
 			((FinderListActivity) getActivity()).backToList();
 		}

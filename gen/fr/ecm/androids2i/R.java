@@ -43,11 +43,12 @@ public final class R {
         public static final int activity_finder=0x7f030000;
         public static final int activity_finder_wait=0x7f030001;
         public static final int detail_layout=0x7f030002;
-        public static final int layoutitem=0x7f030003;
-        public static final int listview_layout=0x7f030004;
-        public static final int listview_layout_frag=0x7f030005;
-        public static final int map_layout=0x7f030006;
-        public static final int wait_layout=0x7f030007;
+        public static final int detail_layout_favorites=0x7f030003;
+        public static final int layoutitem=0x7f030004;
+        public static final int listview_layout=0x7f030005;
+        public static final int listview_layout_frag=0x7f030006;
+        public static final int map_layout=0x7f030007;
+        public static final int wait_layout=0x7f030008;
     }
     public static final class menu {
         public static final int activity_finder=0x7f070000;

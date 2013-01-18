@@ -43,7 +43,11 @@ public class FinderActivity extends TabActivity implements Runnable {
 		tabHost = getTabHost(); // The activity TabHost
 		buildTabs();
 		getJsonStream();
-
+		//setMockData();
+		//force the methode that apply the changes on the current tab
+//		String tabTag = getTabHost().getCurrentTabTag(); 
+//		FinderListActivity activity = (FinderListActivity) getLocalActivityManager().getActivity(tabTag);
+//		activity.launchMainFragment();
 	}
 
 	public void buildTabs() {
@@ -91,14 +95,6 @@ public class FinderActivity extends TabActivity implements Runnable {
 
 	public void getJsonStream() {
 		// prepare for a progress bar dialog
-//		progressBar = new ProgressDialog(this);
-//		progressBar = ProgressDialog.show(this, "Loading...", "Finding locations:");
-//		progressBar.setCancelable(true);
-//		progressBar.setTitle("Loading...");
-//		progressBar.setMessage("Finding locations:");
-//		progressBar.setIndeterminate(false);
-//		progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-//		progressBar.setProgress(0);
 		progressBar = ProgressDialog.show(this, "Loading...", "Finding locations:");
 		new Thread(new Runnable() {
 			public void run() {
@@ -111,11 +107,10 @@ public class FinderActivity extends TabActivity implements Runnable {
 				JSONArray contacts = null;
 				try {
 					contacts = json.getJSONArray("results");
-					progressBar.setCancelable(true);
-					progressBar.setIndeterminate(false);
-					progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-					progressBar.setProgress(0);
-					progressBar.setMax(contacts.length());
+//					progressBar.setIndeterminate(false);
+//					progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+//					progressBar.setProgress(0);
+//					progressBar.setMax(contacts.length());
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -158,6 +153,21 @@ public class FinderActivity extends TabActivity implements Runnable {
 	@Override
 	public void run() {
 		getJsonStream();
+	}
+	
+	private void setMockData(){
+		for(int i=0; i<4; i++){
+			POI poi = new POI();
+			poi.setFavorit(false);
+			poi.setId(i);
+			poi.setInformations("info...");
+			poi.setLat(40+i);
+			poi.setLon(2+i);
+			poi.setNom("nom");
+			poi.setQuartier("quartier");
+			poi.setSecteur("secteur");
+			FinderActivity.getPois().put(poi.getId(), poi);
+		}
 	}
 
 }

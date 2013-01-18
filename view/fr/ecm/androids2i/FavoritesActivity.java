@@ -5,15 +5,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class FavoritesActivity extends Activity {
 
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listview_layout);
@@ -23,26 +23,11 @@ public class FavoritesActivity extends Activity {
 		Set<String> arg1 = new HashSet<String>();
 		Set<String> favoris = app_preferences.getStringSet("favoris", arg1);
 
-		System.out.println(favoris);
-		// TextView textview = new TextView(this);
-		// String txt = "favoris:\n";
-		// for(String favori : favoris){
-		// txt += favori+"\n";
-		// }
-		// textview.setText(txt);
-		// setContentView(textview);
-
 		ListView myListView = (ListView) findViewById(android.R.id.list);
 
 		CustomAdapter_favoris mShedule = new CustomAdapter_favoris(this,
 				this.getResources(), this.getBaseContext(), getPoiList(favoris));
 
-		if(mShedule==null){
-			System.out.println("mSchedule is NULL !");
-		}
-		else{
-			System.out.println("mSchedule is not NULL !");
-		}
 		myListView.setAdapter(mShedule);
 	}
 
@@ -60,9 +45,7 @@ public class FavoritesActivity extends Activity {
 	public void setContent() {
 		SharedPreferences app_preferences = PreferenceManager
 				.getDefaultSharedPreferences(this);
-
 		Set<String> arg1 = new HashSet<String>();
-		// Get the value for the run counter
 		Set<String> favoris = app_preferences.getStringSet("favoris", arg1);
 
 		ListView myListView = (ListView) findViewById(android.R.id.list);
@@ -75,17 +58,6 @@ public class FavoritesActivity extends Activity {
 
 	@Override
 	public void onResume() {
-		SharedPreferences app_preferences = PreferenceManager
-				.getDefaultSharedPreferences(this);
-
-		Set<String> arg1 = null;
-		// Get the value for the run counter
-		Set<String> favoris = app_preferences.getStringSet("favoris", arg1);
-
-		for (String favori : favoris) {
-			Log.i("Favorit Resume", favori);
-		}
-		Log.i("Favorit Resume", "repaint favorites");
 		setContent();
 		super.onResume();
 	}
@@ -105,8 +77,10 @@ public class FavoritesActivity extends Activity {
 		onResume();
 	}
 
-	public void goToMap(POI poi) {
-		// TODO Auto-generated method stub
-
+	public void runDetail(POI poi) {
+		Intent i = new Intent(this, FavoritesDetail.class);   
+		i.putExtra("favorites_detail", poi.getId()+"" );
+		startActivity(i);
 	}
+	
 }

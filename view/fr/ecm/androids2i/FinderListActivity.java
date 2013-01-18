@@ -24,7 +24,6 @@ public class FinderListActivity extends Activity {
 
 	private DetailFragment fragment;
 	private ListFragment listFragment = null;
-	private boolean init = true;
 
 	private int category = 0;
 
@@ -110,6 +109,7 @@ public class FinderListActivity extends Activity {
 		set.add("" + poi_id);
 		editor.putStringSet("favoris", set);
 		editor.commit(); // Very important
+		FinderActivity.getPois().get(poi_id).setFavorit(true);
 
 		((FinderActivity) getParent()).setCurrentTab(2);
 	}
